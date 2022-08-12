@@ -1,0 +1,19 @@
+
+services:
+  redis:
+    image: redis:alpine
+    hostname: redis
+    command: ["redis-server", "--appendonly", "yes"]
+
+  exporter:
+    image: redis-llen-exporter
+    volumes:
+      - .:/usr/src/app/src
+      - ./sample-config.yaml:/redis-llen-exporter.yaml:ro
+    environment:
+      - REDIS_LLEN_EXPORTER_BIND_ADDR=0.0.0.0
+    build:
+      context: .
+    ports:
+      - "9090:9090"
+    restart: on-failure

@@ -1,0 +1,15 @@
+
+instances:
+  sample-instance:
+    host: redis
+    port: 6379
+    db: 0
+    ssl: false
+    username:
+    password:
+
+    keys:
+      - queue1
+      - queue2
+      - stack
+      - something with spaces
